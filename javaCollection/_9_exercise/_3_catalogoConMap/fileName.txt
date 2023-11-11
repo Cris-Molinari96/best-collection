@@ -1,0 +1,8 @@
+name='ss22', numero pezzi= 22
+name='Iphone 12', numero pezzi= 2
+name='ss21', numero pezzi= 2
+name='Iphone 13', numero pezzi= 2
+name='ss20', numero pezzi= 2
+name='Iphone 14', numero pezzi= 2
+name='Iphone 11', numero pezzi= 2
+name='ss19', numero pezzi= 2

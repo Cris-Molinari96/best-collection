@@ -1,0 +1,7 @@
+newTestSecurity)  c'è il codice ma non funzionante riguardo a bcrypto
+
+testSecurityTest) c'è il modo in cui il form deve passare correttamente i dati a spring security per autenticare un utente.
+
+bonus-code) c'è il codice di come aggiungere bcrypto ma anch'esso non funzionante nella fase di login.
+
+eserciziSpring)

@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-xs-10">
+    <!--Dobbiamo restare in attesa di un evento(ingredientAdded -> è una variabile che viene avvalorata quando si preme il btn add ingredient)
+    ... trattandosi di un evento in attesa ci vanno le tonde,
+    ! ci troviamo in un caso di (eventBinding) -->
+    <!--Inoltre ingredientAdded ci restituisce un ingrediente catturato da $event-->
+    <app-shop-list-edit></app-shop-list-edit>
+    <hr>
+    <!--    Questo rappresenta il singolo item -->
+    <ul class="list-group">
+      <a
+        class="list-group-item" style="cursor: pointer"
+        *ngFor="let ingredient of ingredientsList">
+        {{ingredient.name}} ({{ingredient.amount}})
+      </a>
+    </ul>
+  </div>
+</div>

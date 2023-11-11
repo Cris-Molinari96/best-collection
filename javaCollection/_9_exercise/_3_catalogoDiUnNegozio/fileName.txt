@@ -1,0 +1,1 @@
+Product{nomeProduct='galaxy 22', prezzoProduct=1299.0, numeroPezzi2}

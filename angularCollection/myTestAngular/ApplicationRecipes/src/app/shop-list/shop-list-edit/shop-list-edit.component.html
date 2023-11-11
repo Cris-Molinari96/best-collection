@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name"> Name </label>
+          <input type="text" id="name" class="form-control" #nameIngredient/>
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" class="form-control" #amountIngredient/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <!--il metodo onAddIngredient quando eseguito, avvalora la variabile d'output,
+          la quale viene emessa all'esterno e recuperabile dal padre.
+          La variabile restituisce un ingrediente nuovo creato-->
+          <button type="submit" class="btn btn-success"  (click)="onAddIngredient()">Add</button>
+          <button type="button" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-primary">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
