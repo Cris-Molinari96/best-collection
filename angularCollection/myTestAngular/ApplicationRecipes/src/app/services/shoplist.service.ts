@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Ingredient} from "../models/ingredient.model";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,8 @@ import {Ingredient} from "../models/ingredient.model";
 export class ShoplistService {
 
   newIngredient = new EventEmitter<Ingredient[]>()
+  startedEditing = new Subject<number>();
+
 
   private ingredientsList:Ingredient[] = [
     new Ingredient("Red Eggs",4),
@@ -18,6 +21,10 @@ export class ShoplistService {
   // * non visualizziamo più l'array originale ma la copia che viene passata una sola volta.
   getList(){
     return this.ingredientsList.slice();
+  }
+
+  getIngredient(index:number){
+    return this.ingredientsList[index];
   }
 
   onAddItem(ingredient:Ingredient){

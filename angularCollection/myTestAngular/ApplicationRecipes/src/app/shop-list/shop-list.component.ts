@@ -25,4 +25,9 @@ export class ShopListComponent implements OnInit {
       }
     );
   }
+
+  editItem(index:number) {
+    console.log(index);
+    this.serviceShopList.startedEditing.next(index);
+  }
 }
