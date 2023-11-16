@@ -11,6 +11,7 @@ export class ShoplistService {
   startedEditing = new Subject<number>();
 
 
+
   private ingredientsList:Ingredient[] = [
     new Ingredient("Red Eggs",4),
   ];
@@ -23,7 +24,7 @@ export class ShoplistService {
     return this.ingredientsList.slice();
   }
 
-  getIngredient(index:number){
+  getIngredient(index:number):Ingredient{
     return this.ingredientsList[index];
   }
 
@@ -32,6 +33,11 @@ export class ShoplistService {
     // ! Qui stiamo emettendo il nuovo array con l'aggiunta degli ingredienti, shopList si registrerà a quest'evento
     // ! per aggiornare la lista
     this.newIngredient.emit(this.ingredientsList.slice());
+  }
+
+  editItem(index:any, newIngredient:Ingredient){
+    this.ingredientsList[index] = newIngredient;
+    this.newIngredient.next(this.ingredientsList.slice());
   }
 
   onDeleteItem(){

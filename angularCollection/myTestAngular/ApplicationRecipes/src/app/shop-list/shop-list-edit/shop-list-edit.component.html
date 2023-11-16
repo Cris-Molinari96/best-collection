@@ -22,10 +22,9 @@
           <!--il metodo onAddIngredient quando eseguito, avvalora la variabile d'output,
           la quale viene emessa all'esterno e recuperabile dal padre.
           La variabile restituisce un ingrediente nuovo creato-->
-          <button type="submit" class="btn btn-success" [disabled]="!form.valid">Add</button>
+          <button type="submit" class="btn btn-success" [disabled]="!form.valid">{{editMode ? 'Edit': 'Add'}}</button>
         </div>
       </div>
-
     </form>
   </div>
 </div>

@@ -21,13 +21,12 @@ export class ShopListComponent implements OnInit {
     // ! ShopList si è correttamente registrata all'evento emesso dal service
     this.serviceShopList.newIngredient.subscribe(
       (ingredients:Ingredient[]) => {
-        this.ingredientsList = ingredients
+        this.ingredientsList = ingredients;
       }
     );
   }
 
-  editItem(index:number) {
-    console.log(index);
+ editItem(index:number)  {
     this.serviceShopList.startedEditing.next(index);
   }
 }

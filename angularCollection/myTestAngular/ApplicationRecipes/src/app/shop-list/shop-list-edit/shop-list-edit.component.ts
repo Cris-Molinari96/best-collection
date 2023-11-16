@@ -17,6 +17,8 @@ export class ShopListEditComponent implements OnInit, OnDestroy {
   @ViewChild('form') form: NgForm | undefined;
   item: Ingredient | undefined;
   subscription: Subscription | undefined;
+  editMode: boolean = false;
+  editIndexMode: number | undefined;
 
 
   // questa varaibile d'output viene avvalorata quando si verifica un evento, motivo per cui per
@@ -26,19 +28,22 @@ export class ShopListEditComponent implements OnInit, OnDestroy {
   constructor(private shopListService: ShoplistService) {
   }
 
-  ngOnInit() {
-    this.subscription = this.shopListService.startedEditing.subscribe((eve: number) => {
-      const ingredient = this.shopListService.getList()[eve];
-      this.item = ingredient;
-        console.log(this.item.name)
-      this.form?.setValue({
-        name:this.item.name,
-        amount:this.item.amount
+  public ngOnInit() {
+    this.subscription = this.shopListService.startedEditing.subscribe(
+      (eve: number) => {
+        // * variabili editIndex per catturare l'index, editMode come già detto, item per recuperare l'item
+        this.editIndexMode = eve;
+        this.editMode = true;
+        this.item = this.shopListService.getIngredient(eve);
+        console.log(this.item);
+        this.form?.setValue({
+          name: this.item.name,
+          amount: this.item.amount,
+        })
       })
-    })
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     console.log('distrutto!')
     this.subscription?.unsubscribe();
   }
@@ -53,12 +58,23 @@ export class ShopListEditComponent implements OnInit, OnDestroy {
   // this.shopListService.onAddItem(new Ingredient(this.inputNameIngredient.nativeElement.value,this.inputAmountIngredient.nativeElement.value))
   // }
 
-  onSubmit(form: NgForm) {
-    const value = this.form?.value;
-    this.shopListService.onAddItem(new Ingredient(value.name, value.amount))
+  public onSubmit(form: NgForm) {
+    if (this.editMode) {
+      this.editItemMode(form);
+    } else {
+      this.shopListService.onAddItem(new Ingredient(form.value.name, form.value.amount))
+    }
+    form.reset();
   }
 
-  onEdit(editForm: NgForm) {
-
+  private editItemMode(form: NgForm) {
+    const value = form?.value;
+    const newIngredient = new Ingredient(value.name, value.amount);
+    this.shopListService.editItem(this.editIndexMode, newIngredient)
+    this.editMode = false;
+    // form.reset({
+    //   name: '',
+    //   amount: ''
+    // })
   }
 }
