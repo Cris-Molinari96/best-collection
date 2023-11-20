@@ -12,8 +12,10 @@
         class="list-group-item" style="cursor: pointer"
         *ngFor="let ingredient of ingredientsList; let i = index"
       >
+        <button class="btn btn-danger" (click)="deleteItem(i)">Delete</button>
         <button class="btn btn-primary" (click)="editItem(i)">Edit</button>
-        <button class="btn btn-danger ">Delete</button>
+        <button type="submit" class="btn btn-primary" (click)="resetItem()">Reset Item</button>
+
         {{ingredient.name}} ({{ingredient.amount}})
       </a>
     </ul>

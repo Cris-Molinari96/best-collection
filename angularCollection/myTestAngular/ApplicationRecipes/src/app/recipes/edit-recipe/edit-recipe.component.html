@@ -1,11 +1,68 @@
-<div class="container p-5">
-  <h5>Update recipe {{recipe?.name}}</h5>
-  <form>
-    <label>Name recipe</label>
-    <input type="text" placeholder="{{recipe?.name}}"/>
+<div class="row mt-5">
+  <div class="col-12">
 
-    <label>Description</label>
-    <input type="text"/>
+    <form (ngSubmit)="onSubmit()" [formGroup]="initFormTemplate">
 
-  </form>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">Name recipe</label>
+            <input id="name" type="text" class="form-control"  formControlName="name" placeholder="{{recipe?.name}}"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL recipe</label>
+            <input id="imagePath" type="text" class="form-control" formControlName="imagePath"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" class="form-control" rows="6" formControlName="description"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="row">
+
+            <div class="col-6">
+              <input type="text" class="form-control" placeholder="Ingredient">
+            </div>
+
+            <div class="col-4">
+              <input type="number" class="form-control" placeholder="Amount">
+            </div>
+
+            <div class="col-12 mt-3">
+              <button class="btn btn-success me-3">Add</button>
+              <button class="btn btn-danger me-3">Delete</button>
+              <button class="btn btn-primary">Update</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mt-3">
+          <button type="submit" class="btn btn-primary me-3">Save</button>
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+
+    </form>
+
+
+  </div>
 </div>
+
+<!--Quello che dobbiamo fare è consentire ad un utente di poter aggiornare la ricetta-->

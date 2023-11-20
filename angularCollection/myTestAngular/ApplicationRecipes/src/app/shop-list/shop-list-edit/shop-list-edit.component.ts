@@ -29,6 +29,7 @@ export class ShopListEditComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
+    // Qui ci stiamo iscrivendo all'evento che mette l'index dell'item. In un metodo del service andiamo a recuperare l'item, questo grazie all'index
     this.subscription = this.shopListService.startedEditing.subscribe(
       (eve: number) => {
         // * variabili editIndex per catturare l'index, editMode come già detto, item per recuperare l'item
@@ -41,6 +42,8 @@ export class ShopListEditComponent implements OnInit, OnDestroy {
           amount: this.item.amount,
         })
       })
+
+    this.resetItem();
   }
 
   public ngOnDestroy() {
@@ -76,5 +79,15 @@ export class ShopListEditComponent implements OnInit, OnDestroy {
     //   name: '',
     //   amount: ''
     // })
+  }
+
+  private resetItem() {
+    this.shopListService.clearButton.subscribe((bool) => {
+      bool ? (this.form?.reset(), this.editMode = true) : null;
+    })
+  }
+
+  public clearForm(){
+    this.form?.reset();
   }
 }

@@ -7,8 +7,8 @@ import {Recipe} from "../models/recipe.model";
 export class RecipesServiceService {
 
   private listRecipes:Recipe[]=[
-    new Recipe(1,"Carbonara","Spaghetti con pecorino, tuorolo d'uovo, pepe","./././assets/image/carbonara.png"),
-    new Recipe(2,"Matriciana","spaghetti, guanciale di Amatrice, pomodori pelati e Pecorino","./././assets/image/matriciana.png")
+    new Recipe(1,"Carbonara","Spaghetti con pecorino, tuorolo d'uovo, pepe","assets/image/carbonara.png", []),
+    new Recipe(2,"Matriciana","spaghetti, guanciale di Amatrice, pomodori pelati e Pecorino","assets/image/matriciana.png", [])
   ];
   @Output() recipeEmit:EventEmitter<Recipe> = new EventEmitter<Recipe>();
 
@@ -28,5 +28,4 @@ export class RecipesServiceService {
     )
     return item;
   }
-
 }

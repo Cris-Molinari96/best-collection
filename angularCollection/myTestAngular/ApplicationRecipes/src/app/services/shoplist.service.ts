@@ -7,9 +7,9 @@ import {Subject} from "rxjs";
 })
 export class ShoplistService {
 
-  newIngredient = new EventEmitter<Ingredient[]>()
+  ingredientListChanged = new EventEmitter<Ingredient[]>()
   startedEditing = new Subject<number>();
-
+  clearButton = new Subject<boolean>()
 
 
   private ingredientsList:Ingredient[] = [
@@ -32,15 +32,20 @@ export class ShoplistService {
     this.ingredientsList.push(ingredient);
     // ! Qui stiamo emettendo il nuovo array con l'aggiunta degli ingredienti, shopList si registrerà a quest'evento
     // ! per aggiornare la lista
-    this.newIngredient.emit(this.ingredientsList.slice());
+    this.ingredientListChanged.emit(this.ingredientsList.slice());
   }
 
+  // Questo codice ci aiuta nel fare un update in un item,
+  // ponendolo = al nuovo ingrediente, prima però recuperiamo la
+  // index dell'item da aggiornare
   editItem(index:any, newIngredient:Ingredient){
     this.ingredientsList[index] = newIngredient;
-    this.newIngredient.next(this.ingredientsList.slice());
+    this.ingredientListChanged.next(this.ingredientsList.slice());
   }
 
-  onDeleteItem(){
-
+  onDelete(index:number){
+    this.ingredientsList.splice(index, 1);
+    this.ingredientListChanged.next(this.ingredientsList.slice())
   }
+
 }

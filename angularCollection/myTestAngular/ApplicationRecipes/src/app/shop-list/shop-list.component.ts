@@ -12,6 +12,7 @@ import {ShoplistService} from "../services/shoplist.service";
 export class ShopListComponent implements OnInit {
 
   ingredientsList!:Ingredient[];
+  buttonClear:boolean = false;
 
   constructor(private serviceShopList : ShoplistService) {
   }
@@ -19,14 +20,25 @@ export class ShopListComponent implements OnInit {
   ngOnInit() {
     this.ingredientsList = this.serviceShopList.getList();
     // ! ShopList si è correttamente registrata all'evento emesso dal service
-    this.serviceShopList.newIngredient.subscribe(
+    this.serviceShopList.ingredientListChanged.subscribe(
       (ingredients:Ingredient[]) => {
         this.ingredientsList = ingredients;
       }
     );
   }
 
- editItem(index:number)  {
+  // In questo metodo stiamo emettendo l'index ossia la posizione dell'item selezionato.
+  // Con una proprietà di tipo Subject.
+  // Quest evento viene ascoltato dal componente figlio.
+public editItem(index:number)  {
     this.serviceShopList.startedEditing.next(index);
+  }
+
+  public resetItem() {
+    this.serviceShopList.clearButton.next(this.buttonClear = true);
+  }
+
+  public deleteItem(i: number) {
+    this.serviceShopList.onDelete(i);
   }
 }
