@@ -14,6 +14,7 @@ export class EditRecipeComponent implements OnInit{
 
   recipe!:Recipe|undefined;
   initFormTemplate!:FormGroup;
+  arrayIngredient = new FormArray<FormGroup>([]);
 
 
   constructor(private recipeService:RecipesServiceService, private aRoute:ActivatedRoute) {
@@ -29,29 +30,40 @@ export class EditRecipeComponent implements OnInit{
   // diamo la responsabilità a un evento di inizializzare il nostro form
   private initForm(){
     const itemRecipe:Recipe | undefined = this.recipe;
-    let arrayIngredient = new FormArray([])
 
-     /* // ! Aggiungere nel form array gli ingredienti
+      // ! Aggiungere nel form array gli ingredienti, e settaggio del nostro formArray
 
     if(itemRecipe?.ingredients.length != 0){
       for (let ingredient of itemRecipe?.ingredients!){
-        arrayIngredient.push(
+       this.arrayIngredient.push(
           new FormGroup({
           'name':new FormControl(ingredient.name),
           'amount':new FormControl(ingredient.amount)
         }))
       }
-    }*/
-
-    console.log(itemRecipe?.description);
+    }
+//! QUI STIAMO CREANDO IL NOSTRO FORM!
     this.initFormTemplate = new FormGroup<any>({
       'name':new FormControl(itemRecipe?.name),
       'imagePath':new FormControl(itemRecipe?.imageUrl),
-      'description':new FormControl(itemRecipe?.description)
+      'description':new FormControl(itemRecipe?.description),
+      'ingredients': this.arrayIngredient
     })
   }
 
+  get ingredientFormArray():FormArray{
+    return this.arrayIngredient;
+  }
+
   public onSubmit(){
-    console.log(this.recipe?.id);
+    console.log(this.initFormTemplate.value.name);
+    console.log(this.initFormTemplate.value.imagePath);
+    console.log(this.initFormTemplate.value.description);
+    console.log(this.initFormTemplate.value.ingredients);
+
+  }
+
+  setIngredientArrayForm() {
+
   }
 }

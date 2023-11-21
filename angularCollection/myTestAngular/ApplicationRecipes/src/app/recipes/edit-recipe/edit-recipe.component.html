@@ -7,7 +7,7 @@
         <div class="col-12">
           <div class="form-group">
             <label for="name">Name recipe</label>
-            <input id="name" type="text" class="form-control"  formControlName="name" placeholder="{{recipe?.name}}"/>
+            <input id="name" type="text" class="form-control" formControlName="name" placeholder="{{recipe?.name}}"/>
           </div>
         </div>
       </div>
@@ -31,19 +31,18 @@
       </div>
 
       <div class="row mt-3">
-        <div class="col-12">
-          <div class="row">
+        <div class="col-12" formArrayName="ingredients">
+          <div class="row" *ngFor="let ingredient of ingredientFormArray.controls; let i = index" [formGroupName]="i">
 
-            <div class="col-6">
-              <input type="text" class="form-control" placeholder="Ingredient">
+            <div class="col-6 mt-2">
+              <input type="text" class="form-control" formControlName="name" placeholder="Ingredient">
             </div>
 
-            <div class="col-4">
-              <input type="number" class="form-control" placeholder="Amount">
+            <div class="col-4 mt-2">
+              <input type="number" class="form-control" formControlName="amount" placeholder="Amount">
             </div>
 
-            <div class="col-12 mt-3">
-              <button class="btn btn-success me-3">Add</button>
+            <div class="col-12 mt-2">
               <button class="btn btn-danger me-3">Delete</button>
               <button class="btn btn-primary">Update</button>
             </div>
@@ -54,6 +53,7 @@
 
       <div class="row">
         <div class="col-12 mt-3">
+          <button type="submit" class="btn btn-success me-3" (click)="setIngredientArrayForm()">Add</button>
           <button type="submit" class="btn btn-primary me-3">Save</button>
           <button type="button" class="btn btn-danger">Cancel</button>
         </div>

@@ -14,7 +14,6 @@
           <input type="number" id="amount" class="form-control" name="amount" ngModel required
                  pattern="^[1-9]+[0-9]*$"/>
         </div>
-
       </div>
 
       <div class="row">
@@ -22,8 +21,10 @@
           <!--il metodo onAddIngredient quando eseguito, avvalora la variabile d'output,
           la quale viene emessa all'esterno e recuperabile dal padre.
           La variabile restituisce un ingrediente nuovo creato-->
-          <button type="submit" class="btn btn-success me-2 mt-2" [disabled]="!form.valid">{{editMode ? 'Edit': 'Add'}}</button>
-          <button type="submit" class="btn btn-primary mt-2" [disabled]="!form.valid" (click)="clearForm()">Clear form</button>
+          <button type="submit" class="btn btn-success me-2 mt-2"
+                  [disabled]="!form.valid">{{editMode ? 'Edit' : 'Add'}}</button>
+          <button type="submit" class="btn btn-primary mt-2" [disabled]="!form.valid" (click)="clearForm()">Clear form
+          </button>
         </div>
       </div>
     </form>

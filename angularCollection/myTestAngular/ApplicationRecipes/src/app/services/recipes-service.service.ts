@@ -7,7 +7,12 @@ import {Recipe} from "../models/recipe.model";
 export class RecipesServiceService {
 
   private listRecipes:Recipe[]=[
-    new Recipe(1,"Carbonara","Spaghetti con pecorino, tuorolo d'uovo, pepe","assets/image/carbonara.png", []),
+    new Recipe(
+      1,
+      "Carbonara",
+      "Spaghetti con pecorino," +
+      " tuorolo d'uovo, pepe","assets/image/carbonara.png",
+      [{name: 'Eggs', amount:4 }, {name:'Pecorino', amount:2}]),
     new Recipe(2,"Matriciana","spaghetti, guanciale di Amatrice, pomodori pelati e Pecorino","assets/image/matriciana.png", [])
   ];
   @Output() recipeEmit:EventEmitter<Recipe> = new EventEmitter<Recipe>();
