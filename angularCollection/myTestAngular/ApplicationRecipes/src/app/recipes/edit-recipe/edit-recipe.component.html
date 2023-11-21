@@ -4,6 +4,13 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="initFormTemplate">
 
       <div class="row">
+        <div class="col-12 mt-3 ms-5">
+          <button type="submit" class="btn btn-primary me-3">Save</button>
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+
+      <div class="row mt-3">
         <div class="col-12">
           <div class="form-group">
             <label for="name">Name recipe</label>
@@ -32,6 +39,7 @@
 
       <div class="row mt-3">
         <div class="col-12" formArrayName="ingredients">
+
           <div class="row" *ngFor="let ingredient of ingredientFormArray.controls; let i = index" [formGroupName]="i">
 
             <div class="col-6 mt-2">
@@ -42,22 +50,14 @@
               <input type="number" class="form-control" formControlName="amount" placeholder="Amount">
             </div>
 
-            <div class="col-12 mt-2">
-              <button class="btn btn-danger me-3">Delete</button>
-              <button class="btn btn-primary">Update</button>
+            <div class="col-2 mt-2">
+              <button class="btn btn-danger me-3">X</button>
             </div>
-
           </div>
+          <button class="btn btn-success mt-3" type="button" (click)="onAddIngredient()">Add ingredient</button>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-12 mt-3">
-          <button type="submit" class="btn btn-success me-3" (click)="setIngredientArrayForm()">Add</button>
-          <button type="submit" class="btn btn-primary me-3">Save</button>
-          <button type="button" class="btn btn-danger">Cancel</button>
-        </div>
-      </div>
 
     </form>
 

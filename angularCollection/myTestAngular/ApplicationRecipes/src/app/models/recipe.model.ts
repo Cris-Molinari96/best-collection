@@ -15,4 +15,8 @@ export class Recipe{
     this.imageUrl = imageUrl;
     this.ingredients = ingredients;
   }
+
+  onAddIngredientModel(ingredient:Ingredient){
+    this.ingredients.push(ingredient);
+  }
 }

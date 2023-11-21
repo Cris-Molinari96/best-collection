@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RecipesServiceService} from "../../services/recipes-service.service";
 import {Recipe} from "../../models/recipe.model";
 import {ActivatedRoute, Params} from "@angular/router";
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Ingredient} from "../../models/ingredient.model";
 
 @Component({
@@ -37,16 +37,19 @@ export class EditRecipeComponent implements OnInit{
       for (let ingredient of itemRecipe?.ingredients!){
        this.arrayIngredient.push(
           new FormGroup({
-          'name':new FormControl(ingredient.name),
-          'amount':new FormControl(ingredient.amount)
+          'name':new FormControl(ingredient.name,Validators.required),
+          'amount':new FormControl(ingredient.amount, [
+            Validators.required,
+            Validators.pattern(/^[1-9]+[0-9]*$/)
+          ])
         }))
       }
     }
 //! QUI STIAMO CREANDO IL NOSTRO FORM!
     this.initFormTemplate = new FormGroup<any>({
-      'name':new FormControl(itemRecipe?.name),
-      'imagePath':new FormControl(itemRecipe?.imageUrl),
-      'description':new FormControl(itemRecipe?.description),
+      'name':new FormControl(itemRecipe?.name,Validators.required),
+      'imagePath':new FormControl(itemRecipe?.imageUrl,Validators.required),
+      'description':new FormControl(itemRecipe?.description,Validators.required),
       'ingredients': this.arrayIngredient
     })
   }
@@ -56,14 +59,19 @@ export class EditRecipeComponent implements OnInit{
   }
 
   public onSubmit(){
-    console.log(this.initFormTemplate.value.name);
-    console.log(this.initFormTemplate.value.imagePath);
-    console.log(this.initFormTemplate.value.description);
-    console.log(this.initFormTemplate.value.ingredients);
+    const ingredientList = this.initFormTemplate.value.ingredients;
 
+    for (const ingredientListElement of ingredientList) {
+        this.recipe?.onAddIngredientModel(ingredientListElement);
+    }
   }
 
-  setIngredientArrayForm() {
-
+   onAddIngredient() {
+    (<FormArray>this.ingredientFormArray).push(
+      new FormGroup({
+        'name': new FormControl(),
+        'amount': new FormControl()
+      })
+    )
   }
 }
