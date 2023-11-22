@@ -3,39 +3,42 @@
 
     <form (ngSubmit)="onSubmit()" [formGroup]="initFormTemplate">
 
-      <div class="row">
-        <div class="col-12 mt-3 ms-5">
-          <button type="submit" class="btn btn-primary me-3">Save</button>
-          <button type="button" class="btn btn-danger">Cancel</button>
-        </div>
-      </div>
-
-      <div class="row mt-3">
-        <div class="col-12">
-          <div class="form-group">
-            <label for="name">Name recipe</label>
-            <input id="name" type="text" class="form-control" formControlName="name" placeholder="{{recipe?.name}}"/>
+<!--      <div formGroupName="mainGroup">-->
+        <div class="row">
+          <div class="col-12 mt-3 ms-5">
+            <button type="submit" class="btn btn-primary me-3" [disabled]="!initFormTemplate.valid">Save</button>
+            <button type="button" class="btn btn-danger">Cancel</button>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-12">
-          <div class="form-group">
-            <label for="imagePath">Image URL recipe</label>
-            <input id="imagePath" type="text" class="form-control" formControlName="imagePath"/>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="name">Name recipe</label>
+              <input id="name" type="text" class="form-control" formControlName="name" placeholder="{{recipe?.name}}"/>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-12">
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" class="form-control" rows="6" formControlName="description"></textarea>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="imagePath">Image URL recipe</label>
+              <input id="imagePath" type="text" class="form-control" formControlName="imagePath"/>
+            </div>
           </div>
         </div>
-      </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" class="form-control" rows="6" formControlName="description"></textarea>
+            </div>
+          </div>
+        </div>
+
+<!--      </div>-->
 
       <div class="row mt-3">
         <div class="col-12" formArrayName="ingredients">

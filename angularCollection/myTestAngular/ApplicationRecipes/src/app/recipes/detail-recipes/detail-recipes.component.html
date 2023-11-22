@@ -10,20 +10,7 @@
 </div>
 <div class="row">
   <div class="col-12">
-    <div class="btn-group">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
-        Manage recipe
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
-        <li><a class="dropdown-item">To shopping list</a></li>
-<!--        <li><a class="dropdown-item" [routerLink]="[recipe?.id,'edit']"> Edit articolo </a></li>-->
-<!--        <li><a class="dropdown-item" [routerLink]="[recipe?.id,'delete']"> Delete articolo </a></li>-->
 
-        <li><a class="dropdown-item" (click)="onUpdate()"> Edit articolo </a></li>
-        <li><a class="dropdown-item" (click)="onDelete()">Delete articolo</a></li>
-
-      </ul>
-    </div>
    <!-- <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle">
 
@@ -42,4 +29,18 @@
   <div class="col-12">
     {{recipe?.description}}
   </div>
+</div>
+
+<div class="btn-group mt-3">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+    Manage recipe
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
+    <li><a class="dropdown-item">To shopping list</a></li>
+    <!--        <li><a class="dropdown-item" [routerLink]="[recipe?.id,'edit']"> Edit articolo </a></li>-->
+    <!--        <li><a class="dropdown-item" [routerLink]="[recipe?.id,'delete']"> Delete articolo </a></li>-->
+
+    <li><a class="dropdown-item" (click)="onUpdate()"> Edit articolo </a></li>
+    <li><a class="dropdown-item" (click)="onDelete()">Delete articolo</a></li>
+  </ul>
 </div>
