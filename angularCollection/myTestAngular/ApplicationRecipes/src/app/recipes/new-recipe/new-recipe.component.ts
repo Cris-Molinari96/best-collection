@@ -10,7 +10,7 @@ import {RecipesServiceService} from "../../services/recipes-service.service";
 export class NewRecipeComponent implements OnInit{
 
   initForm!:FormGroup;
-  formArray = new FormArray<FormGroup>([
+  formArray = new FormArray([
       new FormGroup({
         'name': new FormControl(null),
       'amount':new FormControl(null)})
@@ -19,7 +19,6 @@ export class NewRecipeComponent implements OnInit{
   }
 
   ngOnInit(){
-
     this.initForm = new FormGroup({
       'image': new FormControl(null),
       'name': new FormControl(null),
@@ -30,8 +29,7 @@ export class NewRecipeComponent implements OnInit{
   }
 
   onSubmit() {
-
-    this.recipesService.addRecipe(this.initForm.value)
+    this.recipesService.addReceipt(this.initForm.value)
     console.log(this.initForm?.value);
   }
 }
