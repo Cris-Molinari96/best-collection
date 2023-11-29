@@ -39,6 +39,7 @@ export class AppComponent {
   ];
 
   numeroCaratteri:number;
+  filterString: string = '';
 
   constructor(private cd : ChangeDetectorRef) {
   }

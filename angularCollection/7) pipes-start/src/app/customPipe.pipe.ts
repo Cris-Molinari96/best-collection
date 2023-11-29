@@ -16,7 +16,11 @@ export class CustomPipePipe implements PipeTransform {
     //   const seconds = this.pad(date.getSeconds());
     //   return `${hours}:${minutes}:${seconds}`;
     // }
-      return value.substring(0, limit) + '...';
+    if(value.length > limit){
+      return value.substring(0,limit) + '...';
+    }else{
+      return value;
+    }
   }
 
 }
