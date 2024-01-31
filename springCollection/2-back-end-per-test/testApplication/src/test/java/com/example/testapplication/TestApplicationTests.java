@@ -1,13 +1,13 @@
-package com.luv2code.springboot.demosecurity;
+package com.example.testapplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemosecurityApplicationTests {
+class TestApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
